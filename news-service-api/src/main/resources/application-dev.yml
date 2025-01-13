@@ -1,0 +1,17 @@
+user:
+  service:
+    url: http://localhost:8083
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/news-service_db
+    username: nikitaryabchikov
+    password: 12345678
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  cache:
+    max-size: 2

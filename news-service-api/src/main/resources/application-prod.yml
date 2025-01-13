@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/news-service_db
+    username: eyJsb2dpbiI6Ik5la2l0b3M0In0
+    password: eyJwYXNzd29yZCI6IjI0MTFOaWtpdG9zMjQxMU5pa2l0b3MyNDExTmlraXRvczI0MTEifQ
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none
