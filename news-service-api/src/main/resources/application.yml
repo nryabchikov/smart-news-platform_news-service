@@ -1,0 +1,40 @@
+comment:
+  service:
+    url: http://localhost:8081
+    username: comment_service_user
+    password: password
+    registration-id: keycloak
+spring:
+  profiles:
+    active: dev
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8082/realms/smart-news-platform
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            client-id: news-app
+            client-secret: GW494japncH40fU4s8c92eYklcUwn4ER
+            scope:
+              - openid
+              - view_news
+              - edit_news
+              - view_comment
+              - edit_comment
+              - microprofile-jwt
+
+logging:
+  level:
+    root: info
+    ru.clevertec.adapter.input.web.comment.CommentController: debug
+    ru.clevertec.adapter.input.web.news.NewsController: debug
+    org.springframework.security: debug
+
+cache:
+  type: lru
+  max-size: 5
+
+

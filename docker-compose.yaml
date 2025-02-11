@@ -1,0 +1,43 @@
+name: smart-news-platform
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:23.0.7
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    volumes:
+      - ./config/keycloak/import:/opt/keycloak/data/import
+    ports:
+      - "8082:8080"
+    command: start-dev --import-realm
+
+#  news-service:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - db-news
+#      - keycloak
+#    restart: always
+#    environment:
+#      SPRING_PROFILES_ACTIVE: dev
+#      COMMENT_SERVICE_URL: 'http://comment-service:8081'
+#      USER_SERVICE_URL: 'http://user-service:8083'
+#      SPRING_DATASOURCE_URL: 'jdbc:postgresql://db-news:5432/news-service_db'
+#      SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER_URI: 'http://keycloak:8080/realms/smart-news-platform'
+#
+#  db-news:
+#    image: postgres:13
+#    ports:
+#      - "5436:5432"
+#    environment:
+#      POSTGRES_USER: nikitaryabchikov
+#      POSTGRES_PASSWORD: 12345678
+#      POSTGRES_DB: news-service_db
+#    volumes:
+#      - news-db-data:/var/lib/postgresql/data
+#
+#volumes:
+#  news-db-data:
